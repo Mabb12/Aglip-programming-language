@@ -7,21 +7,21 @@ def compile_aglip(code):
     while i < len_code:
         cmd = code[i]
 
-        if cmd == "A":  # Add - увеличивает значение в текущей ячейке
+        if cmd == "A":  # Add
             count = 1
             while i + count < len_code and code[i + count] == "A":
                 count += 1
             py_code += "    " * in_loop + f"memory[counter] = (memory[counter] + {count}) % 256\n"
             i += count
 
-        elif cmd == "G":  # Go - перемещает указатель
+        elif cmd == "G":  # Go 
             count = 1
             while i + count < len_code and code[i + count] == "G":
                 count += 1
             py_code += "    " * in_loop + f"counter = (counter + {count}) % 256\n"
             i += count
 
-        elif cmd == "L":  # Loop - цикл while
+        elif cmd == "L":  # Loop 
             if in_loop == 0:
                 py_code += "    " * in_loop + "while memory[counter] != 0:\n"
                 in_loop += 1
@@ -29,11 +29,11 @@ def compile_aglip(code):
                 in_loop -= 1
             i += 1
 
-        elif cmd == "I":  # Input - ввод значения
+        elif cmd == "I":  # Input
             py_code += "    " * in_loop + "memory[counter] = int(input('Input: ')) % 256\n"
             i += 1
 
-        elif cmd == "P":  # Print - вывод значения
+        elif cmd == "P":  # Print
             py_code += "    " * in_loop + "print(f'Output: {memory[counter]}')\n"
             i += 1
 
@@ -58,6 +58,7 @@ def run_aglip(code):
 
 
 if __name__ == "__main__":
-    program3 = 'AAA'  # Установить 3, выводить пока не 0
+    program3 = 'AAA'
 
     run_aglip(program3)
+
