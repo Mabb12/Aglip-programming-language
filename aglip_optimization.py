@@ -19,18 +19,16 @@ def compile_aglip(code):
             i += count
         elif cmd == "L":  # Loop 
             if in_loop == 0:
-                py_code += "    " * in_loop + "while memory[counter] != 0:\n"
+                py_code += "    " * in_loop + f"while memory[{counter}] != memory[{counter + 1}]:\n"
                 in_loop += 1
             else:
                 in_loop -= 1
             i += 1
         elif cmd == "I":  # Input
-            py_code += "    " * in_loop + "memory[counter] = int(input('Input: ')) % 256\n"
+            py_code += "    " * in_loop + "memory[counter] = int(input()) % 256\n"
             i += 1
         elif cmd == "P":  # Print
-            py_code += "    " * in_loop + "print(f'Output: {memory[counter]}')\n"
-            i += 1
-        else: 
+            py_code += "    " * in_loop + "print(memory[counter])\n"
             i += 1
     return py_code
 
@@ -38,3 +36,4 @@ def compile_aglip(code):
 if __name__ == "__main__":
     program = 'AAA'
     compile_aglip(program)
+
