@@ -37,7 +37,7 @@ def compile_aglip(code):
             py_code += "    " * in_loop + "print(f'Output: {memory[counter]}')\n"
             i += 1
 
-        else:  # Пропускаем неизвестные символы
+        else: 
             i += 1
 
     return py_code
@@ -59,4 +59,5 @@ def run_aglip(code):
 
 if __name__ == "__main__":
     program3 = 'AAA'  # Установить 3, выводить пока не 0
+
     run_aglip(program3)
